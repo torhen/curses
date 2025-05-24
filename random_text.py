@@ -43,8 +43,6 @@ class App:
             self.update()
             self.draw()
 
-
-
 def main(win):
     App(win)
 
