@@ -27,21 +27,25 @@ class App:
         inp = self.win.getch()
         if inp != curses.KEY_RESIZE:
                 self.win.clear()
-                
+        out = ''
 
         height, width = self.win.getmaxyx()
         for y in range(height-1):
             for x in range(width-1):
                 if y < self.ymax and x < self.xmax:
-                    self.win.addstr(y, x, self.doc[y][x])
-                else:
-                    self.win.addstr(y, x, ' ')
+                    out = out + self.doc[y][x]
+            out = out + '\n'
+
+        # only one string as output
+        self.win.addstr(0, 0, out)
         self.win.refresh()
 
     def run(self):
         while True:
             self.update()
             self.draw()
+
+
 
 def main(win):
     App(win)
